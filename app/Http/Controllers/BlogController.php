@@ -15,6 +15,7 @@ class BlogController extends Controller
             'topic'    => 'required|string|max:255',
             'platform' => 'required|in:linkedin,medium,both',
             'tone'     => 'required|in:professional,casual,technical',
+            'scheduled_at' => 'nullable|date',
         ]);
 
         $topic    = $request->input('topic');
@@ -73,6 +74,8 @@ class BlogController extends Controller
             'platform' => $platform,
             'tone'     => $tone,
             'status'   => 'draft',
+            'image_url' => $request->input('image_url', null),
+            'scheduled_at' => $request->input('scheduled_at', null),
         ]);
 
         return response()->json([
@@ -81,12 +84,24 @@ class BlogController extends Controller
             'topic'    => $topic,
             'content'  => $content,
             'platform' => $platform,
+            'image_url' => $request->input('image_url', null),
+            'scheduled_at' => $request->input('scheduled_at', null),
         ]);
     }
     // Get all blogs
 public function index()
 {
-    $blogs = Blog::latest()->get();
+     $blogs = Blog::latest()->select(
+        'id',
+        'topic',
+        'content',
+        'platform',
+        'tone',
+        'status',
+        'image_url',
+        'scheduled_at',
+        'created_at'
+    )->get();
 
     return response()->json($blogs);
 }

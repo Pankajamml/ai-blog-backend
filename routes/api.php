@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AIController;
+use App\Http\Controllers\ImageController;
+// Image routes
+Route::post('/upload-image',  [ImageController::class, 'upload']);
+Route::delete('/delete-image',[ImageController::class, 'delete']);
 // Test route
 Route::get('/test', function () {
     return response()->json([
