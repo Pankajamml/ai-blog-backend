@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LinkedInController;
+use App\Http\Controllers\AnalyticsController;
 
 // Test route
 Route::get('/test', function () {
@@ -26,3 +27,6 @@ Route::delete('/delete-image', [ImageController::class, 'delete']);
 // LinkedIn routes
 Route::post('/auth/linkedin/exchange', [LinkedInController::class, 'exchange']);
 Route::post('/publish/linkedin',       [LinkedInController::class, 'publish']);
+
+// Analytics route
+Route::get('/analytics', [AnalyticsController::class, 'stats']);
