@@ -16,6 +16,9 @@ class Blog extends Model
         'scheduled_at',
         'published_at',
         'is_published',
+        'linkedin_token',
+        'linkedin_post_id',
+
     ];
       protected $casts = [
         'scheduled_at' => 'datetime',

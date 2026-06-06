@@ -69,13 +69,14 @@ class BlogController extends Controller
 
         // Save to DB
         $blog = Blog::create([
-            'topic'    => $topic,
-            'content'  => $content,
-            'platform' => $platform,
-            'tone'     => $tone,
-            'status'   => 'draft',
-            'image_url' => $request->input('image_url', null),
-            'scheduled_at' => $request->input('scheduled_at', null),
+            'topic'          => $topic,
+    'content'        => $content,
+    'platform'       => $platform,
+    'tone'           => $tone,
+    'image_url'      => $request->input('image_url', null),
+    'scheduled_at'   => $request->input('scheduled_at', null),
+    'linkedin_token' => $request->input('linkedin_token', null),
+    'status'         => $request->input('scheduled_at') ? 'scheduled' : 'draft',
         ]);
 
         return response()->json([
